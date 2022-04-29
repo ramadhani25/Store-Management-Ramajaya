@@ -2,9 +2,11 @@ import React from "react";
 
 const CardDashboard = () => {
   return (
-    <div className="bg-orange-400 flex p-5">
-      <h1 className="mr-5">20</h1>
-      <p>Product</p>
+    <div className="bg-accent py-5 px-8 rounded-md">
+      <p className="flex items-center text-lg text-gray-700">
+        <span className="mr-5 text-2xl font-semibold text-gray-900">20</span>{" "}
+        Product
+      </p>
     </div>
   );
 };

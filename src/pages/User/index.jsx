@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { Navbar, Sidebar, Profile, Breadcrumb } from "components";
-import { Main } from "domain/Dashboard";
+import { Main } from "domain/User";
 
-const Dashboard = ({
+const User = ({
   toggleProfile,
   toggleSidebar,
   setToggleProfile,
@@ -39,4 +39,4 @@ const Dashboard = ({
   );
 };
 
-export default Dashboard;
+export default User;
