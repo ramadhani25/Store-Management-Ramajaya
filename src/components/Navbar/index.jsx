@@ -1,5 +1,6 @@
 import React from "react";
-import { FiMenu, FiMoreVertical } from "react-icons/fi";
+// import { FiMenu, FiMoreVertical } from "react-icons/fi";
+import { icon } from "assets/icon";
 
 const Navbar = ({
   toggleSidebar,
@@ -8,19 +9,19 @@ const Navbar = ({
   setToggleProfile,
 }) => {
   return (
-    <div className="flex tracking-widest font-semibold justify-between text-center bg-secondary text-accent text-xl p-4">
+    <div className="flex tracking-widest font-semibold justify-between text-center bg-secondary text-accent text-xl p-4 md:hidden">
       <div className="flex">
         <button
           className="px-2"
           onClick={() => setToggleSidebar(!toggleSidebar)}
         >
-          <FiMenu />
+          {icon.fimenu}
         </button>
         <div>RAMAJAYA</div>
       </div>
       <div>
         <button onClick={() => setToggleProfile(!toggleProfile)}>
-          <FiMoreVertical />
+          {icon.fimorevertical}
         </button>
       </div>
     </div>

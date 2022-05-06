@@ -5,3 +5,4 @@ export { default as Breadcrumb } from "./Breadcrumb";
 export { default as CardDashboard } from "./CardDashboard";
 export { default as Table } from "./Table";
 export { default as TableController } from "./TableController";
+export { default as ContentTitle } from "./ContentTitle";

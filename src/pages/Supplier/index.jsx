@@ -1,7 +1,7 @@
 import { Navbar, Sidebar, Profile, Breadcrumb } from "components";
-import { Main } from "domain/Dashboard";
+import { Main } from "domain/Supplier";
 
-const Dashboard = ({
+const Supplier = ({
   toggleProfile,
   toggleSidebar,
   setToggleProfile,
@@ -30,4 +30,4 @@ const Dashboard = ({
   );
 };
 
-export default Dashboard;
+export default Supplier;
