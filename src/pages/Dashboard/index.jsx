@@ -1,5 +1,6 @@
 import { Navbar, Sidebar, Profile, Breadcrumb } from "components";
 import { Main } from "domain/Dashboard";
+import { useNavigate } from "react-router-dom";
 
 const Dashboard = ({
   toggleProfile,
@@ -7,6 +8,14 @@ const Dashboard = ({
   setToggleProfile,
   setToggleSidebar,
 }) => {
+  const navigate = useNavigate();
+  const dataPath = [{ path: "/", title: "Dashboard" }];
+
+  // console.log(localStorage.getItem("token"));
+  if (!JSON.parse(localStorage.getItem("token"))) {
+    navigate("/login");
+  }
+
   return (
     <div>
       <Navbar
@@ -22,7 +31,7 @@ const Dashboard = ({
         />
         <div className="main-content">
           <Profile toggleProfile={toggleProfile} />
-          <Breadcrumb />
+          <Breadcrumb dataPath={dataPath} />
           <Main />
         </div>
       </div>

@@ -6,3 +6,5 @@ export { default as CardDashboard } from "./CardDashboard";
 export { default as Table } from "./Table";
 export { default as TableController } from "./TableController";
 export { default as ContentTitle } from "./ContentTitle";
+export { default as Form } from "./Form";
+export { default as Chart } from "./Chart";

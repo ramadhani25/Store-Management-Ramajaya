@@ -10,11 +10,11 @@ import client from "graphql/apolloCilent";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <ApolloProvider client={client}>
-    <React.StrictMode>
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
-    </React.StrictMode>
+    {/* <React.StrictMode> */}
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
+    {/* </React.StrictMode> */}
   </ApolloProvider>
 );
 

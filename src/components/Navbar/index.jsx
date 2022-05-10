@@ -1,5 +1,4 @@
 import React from "react";
-// import { FiMenu, FiMoreVertical } from "react-icons/fi";
 import { icon } from "assets/icon";
 
 const Navbar = ({

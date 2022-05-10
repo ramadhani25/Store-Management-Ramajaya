@@ -1,13 +1,32 @@
-import React from "react";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+
+// Assets
 import { icon } from "assets/icon";
 
-const TableController = ({ btnName }) => {
+const TableController = ({ btnName, setdataLimit, doSearch }) => {
+  // States & Variables
+  const [search, setSearch] = useState("");
+  const navigate = useNavigate();
+
+  // Function
+  const submitSearch = (e) => {
+    e.preventDefault();
+    doSearch(search);
+    setSearch("");
+  };
+
   return (
     <div className="flex justify-between items-center p-5 text-xs md:text-sm">
-      <form className="flex items-center">
+      <form className="flex items-center" onSubmit={submitSearch}>
         <label className="flex mr-3 items-center">
           <span className="mr-3">Show</span>
-          <select className="mr-2 bg-accent p-1 rounded-lg" name="" id="">
+          <select
+            className="mr-2 bg-accent p-1 rounded-lg"
+            onChange={(e) => {
+              setdataLimit(parseInt(e.target.value));
+            }}
+          >
             <option value="10">10</option>
             <option value="20">20</option>
             <option value="30">30</option>
@@ -19,14 +38,19 @@ const TableController = ({ btnName }) => {
         <label className="flex">
           <input
             type="text"
+            value={search}
             className="w-full border-solid border-2 border-secondary bg-accent mr-2 rounded-md outline-none py-1 px-3"
+            onChange={(e) => setSearch(e.target.value)}
           />
           <button type="submit" className="text-xl">
             {icon.fisearch}
           </button>
         </label>
       </form>
-      <button className="bg-accent font-semibold flex items-center py-1 px-3 rounded-lg text-xs md:text-xs">
+      <button
+        onClick={() => navigate(`add${btnName}`)}
+        className="bg-accent font-semibold flex items-center py-1 px-3 rounded-lg text-xs md:text-xs"
+      >
         <span className="mr-2">{icon.fiplus}</span>
         <span>Add {btnName}</span>
       </button>

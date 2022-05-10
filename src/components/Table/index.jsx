@@ -1,42 +1,61 @@
 import React from "react";
-import { FiEdit } from "react-icons/fi";
-import { RiDeleteBin6Line } from "react-icons/ri";
-// import { product } from "constants/dummyData";
+import { useNavigate } from "react-router-dom";
 
-const Table = ({ column, dataTable }) => {
+// Assets
+import { icon } from "assets/icon";
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
+
+const Table = ({ column, dataTable, deleteData, link }) => {
+  const navigate = useNavigate();
+
   return (
     <div className="p-5">
       <table className="table-auto w-full text-center">
         <thead>
           <tr className="bg-accent">
-            <th>No</th>
+            <th className="py-2 text-xs md:text-sm">No</th>
             {column.map((item, itemIdx) => (
-              <th key={itemIdx}>{item.heading}</th>
+              <th key={itemIdx} className="py-2 text-xs md:text-sm">
+                {item.heading}
+              </th>
             ))}
-            <th>Action</th>
+            <th className="py-2 text-xs md:text-sm">Action</th>
           </tr>
         </thead>
         <tbody>
-          {dataTable.map((item, itemIdx) => (
-            <tr key={itemIdx}>
-              <td>{itemIdx + 1}</td>
-              {column.map((colItem, colItemIdx) =>
-                colItem.value !== "kategori" && colItem.value !== "supplier" ? (
-                  <td key={colItemIdx}>{item[colItem.value]}</td>
-                ) : (
-                  <td key={colItemIdx}>{item[colItem.value]["nama"]}</td>
-                )
-              )}
-              <td className="flex justify-center py-3">
-                <button className="text-blue-500 mr-2">
-                  <FiEdit />
-                </button>
-                <button className="text-red-600">
-                  <RiDeleteBin6Line />
-                </button>
-              </td>
-            </tr>
-          ))}
+          {dataTable &&
+            dataTable.map((item, itemIdx) => (
+              <tr key={itemIdx}>
+                <td className="py-3 text-xs md:text-sm">{itemIdx + 1}</td>
+                {column.map((colItem, colItemIdx) =>
+                  colItem.value !== "kategori" &&
+                  colItem.value !== "supplier" ? (
+                    <td key={colItemIdx} className="py-3 text-xs md:text-sm">
+                      {item[colItem.value]}
+                    </td>
+                  ) : (
+                    <td key={colItemIdx} className="py-3 text-xs md:text-sm">
+                      {item[colItem.value]["nama"]}
+                    </td>
+                  )
+                )}
+                <td className="flex justify-center py-3 text-xs md:text-sm">
+                  <button
+                    className="text-blue-500 mr-2"
+                    onClick={() => navigate(`edit${link}/${item.id}`)}
+                  >
+                    {icon.fiedit}
+                  </button>
+                  <button
+                    className="text-red-600"
+                    onClick={() => deleteData(item.id)}
+                  >
+                    {icon.rideletebin6line}
+                  </button>
+                </td>
+              </tr>
+            ))}
         </tbody>
       </table>
     </div>

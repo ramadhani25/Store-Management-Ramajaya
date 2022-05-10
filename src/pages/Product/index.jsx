@@ -7,6 +7,10 @@ const Product = ({
   setToggleProfile,
   setToggleSidebar,
 }) => {
+  const dataPath = [
+    { path: "/", title: "Home /" },
+    { path: "/product", title: "Product" },
+  ];
   return (
     <div>
       <Navbar
@@ -22,7 +26,7 @@ const Product = ({
         />
         <div className="main-content">
           <Profile toggleProfile={toggleProfile} />
-          <Breadcrumb />
+          <Breadcrumb dataPath={dataPath} />
           <Main />
         </div>
       </div>
