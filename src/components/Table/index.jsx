@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 // Assets
@@ -8,6 +8,10 @@ import "react-loading-skeleton/dist/skeleton.css";
 
 const Table = ({ column, dataTable, deleteData, link }) => {
   const navigate = useNavigate();
+
+  const [isAdmin] = useState(
+    JSON.parse(localStorage.getItem("token")).tipe === "admin"
+  );
 
   return (
     <div className="p-5">
@@ -20,7 +24,13 @@ const Table = ({ column, dataTable, deleteData, link }) => {
                 {item.heading}
               </th>
             ))}
-            <th className="py-2 text-xs md:text-sm">Action</th>
+            <th
+              className={`py-2 text-xs md:text-sm ${
+                isAdmin ? "flex" : "hidden"
+              }`}
+            >
+              Action
+            </th>
           </tr>
         </thead>
         <tbody>
@@ -40,7 +50,11 @@ const Table = ({ column, dataTable, deleteData, link }) => {
                     </td>
                   )
                 )}
-                <td className="flex justify-center py-3 text-xs md:text-sm">
+                <td
+                  className={`justify-center py-3 text-xs md:text-sm ${
+                    isAdmin ? "flex" : "hidden"
+                  }`}
+                >
                   <button
                     className="text-blue-500 mr-2"
                     onClick={() => navigate(`edit${link}/${item.id}`)}

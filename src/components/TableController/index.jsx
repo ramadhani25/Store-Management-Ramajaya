@@ -8,6 +8,9 @@ const TableController = ({ btnName, setdataLimit, doSearch }) => {
   // States & Variables
   const [search, setSearch] = useState("");
   const navigate = useNavigate();
+  const [isAdmin] = useState(
+    JSON.parse(localStorage.getItem("token")).tipe === "admin"
+  );
 
   // Function
   const submitSearch = (e) => {
@@ -18,7 +21,12 @@ const TableController = ({ btnName, setdataLimit, doSearch }) => {
 
   return (
     <div className="flex justify-between items-center p-5 text-xs md:text-sm">
-      <form className="flex items-center" onSubmit={submitSearch}>
+      <form
+        className={`flex items-center justify-between ${
+          isAdmin ? "" : "w-full"
+        }`}
+        onSubmit={submitSearch}
+      >
         <label className="flex mr-3 items-center">
           <span className="mr-3">Show</span>
           <select
@@ -39,7 +47,7 @@ const TableController = ({ btnName, setdataLimit, doSearch }) => {
           <input
             type="text"
             value={search}
-            className="w-full border-solid border-2 border-secondary bg-accent mr-2 rounded-md outline-none py-1 px-3"
+            className="w-2/3 border-solid border-2 border-secondary bg-accent mr-2 rounded-md outline-none py-1 px-3"
             onChange={(e) => setSearch(e.target.value)}
           />
           <button type="submit" className="text-xl">
@@ -49,7 +57,9 @@ const TableController = ({ btnName, setdataLimit, doSearch }) => {
       </form>
       <button
         onClick={() => navigate(`add${btnName}`)}
-        className="bg-accent font-semibold flex items-center py-1 px-3 rounded-lg text-xs md:text-xs"
+        className={`bg-accent font-semibold items-center py-1 px-3 rounded-lg text-xs md:text-xs ${
+          isAdmin ? "flex" : "hidden"
+        }`}
       >
         <span className="mr-2">{icon.fiplus}</span>
         <span>Add {btnName}</span>

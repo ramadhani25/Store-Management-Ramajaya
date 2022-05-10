@@ -1,14 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 
 // Constant
-import { menuItem } from "constants/menuItem";
+import { menuItem, menuItemAdmin } from "constants/menuItem";
 
 // Assets
 import { icon } from "assets/icon";
 
 const Sidebar = ({ toggleSidebar, setToggleSidebar }) => {
   const navigate = useNavigate();
+
+  const [isAdmin] = useState(
+    JSON.parse(localStorage.getItem("token")).tipe === "admin"
+  );
 
   return (
     <div className="bg-primary">
@@ -42,15 +46,26 @@ const Sidebar = ({ toggleSidebar, setToggleSidebar }) => {
               NAVIGATION
             </div>
             <div>
-              {menuItem.map((item, itemIdx) => (
-                <NavLink
-                  key={itemIdx}
-                  to={item.path}
-                  className="px-6 py-3 bg-primary text-sm tracking-wide flex items-center  hover:bg-secondary"
-                >
-                  <span className="mr-2">{item.icon}</span> {item.name}
-                </NavLink>
-              ))}
+              {isAdmin &&
+                menuItemAdmin.map((item, itemIdx) => (
+                  <NavLink
+                    key={itemIdx}
+                    to={item.path}
+                    className="px-6 py-3 bg-primary text-sm tracking-wide flex items-center  hover:bg-secondary"
+                  >
+                    <span className="mr-2">{item.icon}</span> {item.name}
+                  </NavLink>
+                ))}
+              {!isAdmin &&
+                menuItem.map((item, itemIdx) => (
+                  <NavLink
+                    key={itemIdx}
+                    to={item.path}
+                    className="px-6 py-3 bg-primary text-sm tracking-wide flex items-center  hover:bg-secondary"
+                  >
+                    <span className="mr-2">{item.icon}</span> {item.name}
+                  </NavLink>
+                ))}
             </div>
           </div>
           <div
