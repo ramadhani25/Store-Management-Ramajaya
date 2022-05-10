@@ -46,7 +46,7 @@ const Sidebar = ({ toggleSidebar, setToggleSidebar }) => {
                 <NavLink
                   key={itemIdx}
                   to={item.path}
-                  className="px-6 py-3 bg-primary text-sm tracking-wide flex items-center hover:bg-secondary"
+                  className="px-6 py-3 bg-primary text-sm tracking-wide flex items-center  hover:bg-secondary"
                 >
                   <span className="mr-2">{item.icon}</span> {item.name}
                 </NavLink>
@@ -54,13 +54,13 @@ const Sidebar = ({ toggleSidebar, setToggleSidebar }) => {
             </div>
           </div>
           <div
-            className="px-6 py-3 bg-primary text-sm text-accent tracking-wide flex items-center hover:bg-secondary cursor-pointer"
+            className="px-6 py-3 bg-primary font-extralight text-sm text-accent tracking-wide flex items-center hover:bg-secondary cursor-pointer"
             onClick={() => {
               localStorage.removeItem("token");
               navigate("/login");
             }}
           >
-            Logout
+            <span className="mr-1">{icon.cglogout}</span> Logout
           </div>
         </div>
       </div>

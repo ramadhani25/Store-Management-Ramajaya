@@ -13,6 +13,7 @@ import {
   FiSearch,
 } from "react-icons/fi";
 import { RiDeleteBin6Line } from "react-icons/ri";
+import { CgLogOut } from "react-icons/cg";
 
 export const icon = {
   fihome: <FiHome />,
@@ -28,4 +29,5 @@ export const icon = {
   fiplus: <FiPlus />,
   fisearch: <FiSearch />,
   rideletebin6line: <RiDeleteBin6Line />,
+  cglogout: <CgLogOut />,
 };

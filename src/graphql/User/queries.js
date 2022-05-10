@@ -19,6 +19,7 @@ export const GET_LOGIN_USER = gql`
     user(
       where: { password: { _eq: $password }, username: { _eq: $username } }
     ) {
+      id
       nama
       tipe
     }

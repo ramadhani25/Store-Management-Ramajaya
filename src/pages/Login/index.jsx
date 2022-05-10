@@ -28,7 +28,6 @@ const Login = () => {
     GET_LOGIN_USER,
     {
       onCompleted: (data) => {
-        console.log(data);
         if (data.user.length === 0) {
           setIsLoginError(true);
         } else {

@@ -1,6 +1,10 @@
 import React from "react";
 
 const Profile = ({ toggleProfile }) => {
+  const idUser = JSON.parse(localStorage.getItem("token")).id;
+  const nameUser = JSON.parse(localStorage.getItem("token")).nama;
+  const typeUser = JSON.parse(localStorage.getItem("token")).tipe;
+
   return (
     <div className={`relative md:w-full`}>
       <div
@@ -19,8 +23,8 @@ const Profile = ({ toggleProfile }) => {
             </div>
           </div>
           <div>
-            <p className="text-sm font-bold text-gray-700">Ramadhani AK</p>
-            <p className="text-xs text-gray-500">Admin</p>
+            <p className="text-sm font-bold text-gray-700">{nameUser}</p>
+            <p className="text-xs text-gray-500">{typeUser}</p>
           </div>
         </div>
       </div>
