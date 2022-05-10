@@ -1,9 +1,25 @@
-import React from "react";
+import { useQuery } from "@apollo/client";
+import { GET_USER_BY_ID } from "graphql/User/queries";
+import React, { useState } from "react";
 
 const Profile = ({ toggleProfile }) => {
-  const idUser = JSON.parse(localStorage.getItem("token")).id;
+  const id = JSON.parse(localStorage.getItem("token")).id;
   const nameUser = JSON.parse(localStorage.getItem("token")).nama;
   const typeUser = JSON.parse(localStorage.getItem("token")).tipe;
+  const [file, setFile] = useState("");
+
+  const {
+    data: dataUserById,
+    loading: loadingUserById,
+    error: errorUserById,
+  } = useQuery(GET_USER_BY_ID, {
+    variables: {
+      _eq: id,
+    },
+    onCompleted: (data) => {
+      setFile(data.user[0].image);
+    },
+  });
 
   return (
     <div className={`relative md:w-full`}>
@@ -19,7 +35,7 @@ const Profile = ({ toggleProfile }) => {
         >
           <div className="mr-3">
             <div className="rounded-full overflow-hidden w-8 h-8">
-              <img src="https://picsum.photos/200" alt="" />
+              <img src={file} alt="" />
             </div>
           </div>
           <div>

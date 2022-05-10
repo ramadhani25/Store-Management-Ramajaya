@@ -44,6 +44,7 @@ export const GET_USER_BY_ID = gql`
       password
       nama
       tipe
+      image
     }
   }
 `;
@@ -67,6 +68,7 @@ export const ADD_USER = gql`
       password
       tipe
       username
+      image
     }
   }
 `;
@@ -81,14 +83,20 @@ export const DELETE_USER = gql`
   }
 `;
 export const EDIT_USER = gql`
-  mutation EDIT_USER($id: Int!, $nama: String!, $password: String!) {
+  mutation EDIT_USER(
+    $id: Int!
+    $nama: String!
+    $password: String!
+    $image: String!
+  ) {
     update_user_by_pk(
       pk_columns: { id: $id }
-      _set: { nama: $nama, password: $password }
+      _set: { nama: $nama, password: $password, image: $image }
     ) {
       nama
       username
       tipe
+      image
     }
   }
 `;

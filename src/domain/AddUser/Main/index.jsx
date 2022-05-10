@@ -47,6 +47,7 @@ const Main = () => {
       ],
     },
   ]);
+  const [file, setFile] = useState("");
 
   // GraphQL
   const [addUser, { data, loading, error }] = useMutation(ADD_USER, {
@@ -62,6 +63,7 @@ const Main = () => {
           username: inputs[1].value,
           password: inputs[2].value,
           tipe: selects[0].value,
+          image: file,
         },
       },
     });
@@ -77,6 +79,9 @@ const Main = () => {
         setSelects={setSelects}
         link="user"
         doSubmit={doSubmit}
+        inputDropzone={true}
+        file={file}
+        setFile={setFile}
       />
     </div>
   );

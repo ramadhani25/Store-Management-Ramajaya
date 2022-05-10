@@ -36,6 +36,7 @@ const Main = () => {
       value: "",
     },
   ]);
+  const [file, setFile] = useState("");
 
   // GraphQL
   const {
@@ -48,11 +49,15 @@ const Main = () => {
     },
     onCompleted: (data) => {
       setDataInputs(data.user);
+      setFile(data.user[0].image);
     },
   });
 
   const [editUser, { data, loading, error }] = useMutation(EDIT_USER, {
-    refetchQueries: [GET_ALL_USER_LIMIT],
+    refetchQueries: [
+      GET_ALL_USER_LIMIT,
+      { query: GET_USER_BY_ID, variables: { _eq: id } },
+    ],
   });
 
   // Function
@@ -62,6 +67,7 @@ const Main = () => {
         id: id,
         nama: inputs[0].value,
         password: inputs[1].value,
+        image: file,
       },
     });
   };
@@ -90,6 +96,9 @@ const Main = () => {
         setInputs={setInputs}
         link="user"
         doSubmit={doSubmit}
+        inputDropzone={true}
+        file={file}
+        setFile={setFile}
       />
     </div>
   );

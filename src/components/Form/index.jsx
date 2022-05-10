@@ -1,7 +1,18 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import Dropzone from "react-dropzone";
 
-const Form = ({ inputs, setInputs, link, doSubmit, selects, setSelects }) => {
+const Form = ({
+  inputs,
+  setInputs,
+  link,
+  doSubmit,
+  selects,
+  setSelects,
+  inputDropzone,
+  file,
+  setFile,
+}) => {
   const navigate = useNavigate();
 
   // Function
@@ -31,6 +42,17 @@ const Form = ({ inputs, setInputs, link, doSubmit, selects, setSelects }) => {
     navigate(`/${link}`);
   };
 
+  const getBase64 = (file) => {
+    var reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = function () {
+      setFile(reader.result);
+    };
+    reader.onerror = function (error) {
+      console.log("Error: ", error);
+    };
+  };
+
   return (
     <form className="p-5" onSubmit={handleSubmitForm}>
       {inputs &&
@@ -51,7 +73,7 @@ const Form = ({ inputs, setInputs, link, doSubmit, selects, setSelects }) => {
 
       {selects &&
         selects.map((select, selectIdx) => (
-          <div key={selectIdx}>
+          <div key={selectIdx} className="py-2 w-full">
             <label className="text-gray-500">{select.label}</label>
             <select
               defaultValue={""}
@@ -72,6 +94,32 @@ const Form = ({ inputs, setInputs, link, doSubmit, selects, setSelects }) => {
             </select>
           </div>
         ))}
+
+      {inputDropzone && (
+        <Dropzone onDrop={(acceptedFiles) => getBase64(acceptedFiles[0])}>
+          {({ getRootProps, getInputProps }) => (
+            <div className="py-2 w-full">
+              <label className="text-gray-500">Image</label>
+              <div
+                className="w-full h-28 border-2 p-3 rounded-md text-gray-700 flex justify-center items-center"
+                {...getRootProps()}
+              >
+                <input {...getInputProps()} />
+                <p>Drop files here</p>
+              </div>
+            </div>
+          )}
+        </Dropzone>
+      )}
+
+      {inputDropzone && (
+        <div className="py-2 w-full">
+          <label className="text-gray-500">Preview</label>
+          <div className="w-full h-60 border-2 overflow-hidden rounded-md text-gray-700 flex justify-center items-center">
+            <img src={file} alt="" className="w-1/2 md:w-1/4" />
+          </div>
+        </div>
+      )}
 
       <div className="w-full flex justify-center mt-5">
         <button className="px-5 py-2 rounded-md bg-accent" type="submit">

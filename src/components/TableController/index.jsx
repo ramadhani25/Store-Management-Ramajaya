@@ -46,8 +46,9 @@ const TableController = ({ btnName, setdataLimit, doSearch }) => {
         <label className="flex">
           <input
             type="text"
+            placeholder="Search"
             value={search}
-            className="w-2/3 border-solid border-2 border-secondary bg-accent mr-2 rounded-md outline-none py-1 px-3"
+            className="w-2/3 border-solid border-2 border-secondary bg-accent mr-2 rounded-md outline-none py-1 px-3 placeholder:text-gray-500"
             onChange={(e) => setSearch(e.target.value)}
           />
           <button type="submit" className="text-xl">
