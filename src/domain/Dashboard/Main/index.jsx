@@ -43,6 +43,7 @@ const Main = () => {
     error: errorAllKategori,
   } = useSubscription(GET_ALL_KATEGORI);
 
+  // useEffect
   useEffect(() => {
     setDataCustomer(dataAllCustomer?.customer);
   }, [loadingAllCustomer, dataAllCustomer]);

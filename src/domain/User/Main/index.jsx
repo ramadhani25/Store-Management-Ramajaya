@@ -26,6 +26,7 @@ const Main = () => {
     { heading: "Username", value: "username" },
     { heading: "Type", value: "tipe" },
   ];
+  const userLoginId = JSON.parse(localStorage.getItem("token")).id;
 
   // GraphQL
   const {
@@ -38,7 +39,8 @@ const Main = () => {
       limit: dataLimit,
     },
     onCompleted: (data) => {
-      setDataTable(data.user);
+      const user = data.user.filter((item) => item.id !== userLoginId);
+      setDataTable(user);
     },
     fetchPolicy: "network-only",
   });
@@ -47,7 +49,8 @@ const Main = () => {
     GET_USER_BY_SEARCH,
     {
       onCompleted: (data) => {
-        setDataTable(data.user);
+        const user = data.user.filter((item) => item.id !== userLoginId);
+        setDataTable(user);
       },
     }
   );

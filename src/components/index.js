@@ -8,3 +8,4 @@ export { default as TableController } from "./TableController";
 export { default as ContentTitle } from "./ContentTitle";
 export { default as Form } from "./Form";
 export { default as Chart } from "./Chart";
+export { default as PrivateRoute } from "./PrivateRoute";

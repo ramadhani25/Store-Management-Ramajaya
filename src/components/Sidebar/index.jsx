@@ -1,6 +1,10 @@
 import React, { useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 
+// Library
+import Swal from "sweetalert2";
+import "animate.css";
+
 // Constant
 import { menuItem, menuItemAdmin } from "constants/menuItem";
 
@@ -10,9 +14,46 @@ import { icon } from "assets/icon";
 const Sidebar = ({ toggleSidebar, setToggleSidebar }) => {
   const navigate = useNavigate();
 
+  const Toast = Swal.mixin({
+    toast: true,
+    position: "top-end",
+    showConfirmButton: false,
+    timer: 3000,
+    timerProgressBar: true,
+    didOpen: (toast) => {
+      toast.addEventListener("mouseenter", Swal.stopTimer);
+      toast.addEventListener("mouseleave", Swal.resumeTimer);
+    },
+  });
+
   const [isAdmin] = useState(
     JSON.parse(localStorage.getItem("token")).tipe === "admin"
   );
+
+  const handleLogout = () => {
+    Swal.fire({
+      title: "Sign Out",
+      text: "Are you sure want to sign out ?",
+      icon: "warning",
+      iconColor: "#EB5353",
+      showCancelButton: true,
+      confirmButtonText: "Yes",
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#EB5353",
+      showClass: {
+        popup: "animate__animated animate__bounceIn",
+      },
+    }).then((result) => {
+      if (result.isConfirmed) {
+        localStorage.removeItem("token");
+        navigate("/login");
+        Toast.fire({
+          icon: "success",
+          title: "Signed out successfully",
+        });
+      }
+    });
+  };
 
   return (
     <div className="bg-primary">
@@ -70,12 +111,9 @@ const Sidebar = ({ toggleSidebar, setToggleSidebar }) => {
           </div>
           <div
             className="px-6 py-3 bg-primary font-extralight text-sm text-accent tracking-wide flex items-center hover:bg-secondary cursor-pointer"
-            onClick={() => {
-              localStorage.removeItem("token");
-              navigate("/login");
-            }}
+            onClick={handleLogout}
           >
-            <span className="mr-1">{icon.cglogout}</span> Logout
+            <span className="mr-1">{icon.cglogout}</span> Sign Out
           </div>
         </div>
       </div>

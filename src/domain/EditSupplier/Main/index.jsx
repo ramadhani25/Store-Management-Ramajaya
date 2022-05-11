@@ -3,6 +3,8 @@ import { useParams } from "react-router-dom";
 
 // Components
 import { Form, ContentTitle } from "components";
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
 
 // GraphQL
 import { useQuery, useMutation } from "@apollo/client";
@@ -73,12 +75,20 @@ const Main = () => {
   return (
     <div className="m-5 bg-white rounded-md">
       <ContentTitle title={title} />
-      <Form
-        inputs={inputs}
-        setInputs={setInputs}
-        link="supplier"
-        doSubmit={doSubmit}
-      />
+      {!dataInputs && (
+        <div className="p-5">
+          <Skeleton className="mb-1" width={100} />
+          <Skeleton className="mb-1 p-2" />
+        </div>
+      )}
+      {dataInputs && (
+        <Form
+          inputs={inputs}
+          setInputs={setInputs}
+          link="supplier"
+          doSubmit={doSubmit}
+        />
+      )}
     </div>
   );
 };

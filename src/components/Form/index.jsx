@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Dropzone from "react-dropzone";
+import Swal from "sweetalert2";
 
 const Form = ({
   inputs,
@@ -14,6 +15,17 @@ const Form = ({
   setFile,
 }) => {
   const navigate = useNavigate();
+  const Toast = Swal.mixin({
+    toast: true,
+    position: "top-end",
+    showConfirmButton: false,
+    timer: 3000,
+    timerProgressBar: true,
+    didOpen: (toast) => {
+      toast.addEventListener("mouseenter", Swal.stopTimer);
+      toast.addEventListener("mouseleave", Swal.resumeTimer);
+    },
+  });
 
   // Function
   const handleInput = (value, index) => {
@@ -39,6 +51,10 @@ const Form = ({
   const handleSubmitForm = (e) => {
     e.preventDefault();
     doSubmit();
+    Toast.fire({
+      icon: "success",
+      title: "Successfully",
+    });
     navigate(`/${link}`);
   };
 
@@ -82,7 +98,7 @@ const Form = ({
               onChange={(e) => handleSelect(e.target.value, selectIdx)}
               required
             >
-              <option value="" disabled hidden>
+              <option value="" disabled>
                 Select {select.label}
               </option>
               {select.options &&

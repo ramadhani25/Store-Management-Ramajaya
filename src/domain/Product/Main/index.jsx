@@ -18,7 +18,7 @@ const Main = () => {
     desc: "Contains data tables from products",
   };
   const [dataLimit, setdataLimit] = useState(10);
-  const [dataTable, setDataTable] = useState([]);
+  const [dataTable, setDataTable] = useState();
   const column = [
     { heading: "Name", value: "nama" },
     { heading: "Price", value: "harga" },

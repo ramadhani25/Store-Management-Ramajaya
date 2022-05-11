@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import { Routes, Route } from "react-router-dom";
 
+// Components
+import { PrivateRoute } from "components";
+
 // Pages
 import {
   Dashboard,
@@ -22,9 +25,6 @@ import {
   NotFound,
   Login,
 } from "./pages";
-
-// Utils
-import PrivateRoute from "Utils/PrivateRoute";
 
 // Assets
 import "./assets/custom.css";
