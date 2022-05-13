@@ -2,8 +2,9 @@ import React, { useEffect, useState } from "react";
 
 // Components
 import { TableController, Table, ContentTitle } from "components";
-import Skeleton from "react-loading-skeleton";
-import "react-loading-skeleton/dist/skeleton.css";
+
+// Library
+import Swal from "sweetalert2";
 
 // GraphQL
 import { useLazyQuery, useMutation, useQuery } from "@apollo/client";
@@ -27,6 +28,19 @@ const Main = () => {
     { heading: "Type", value: "tipe" },
   ];
   const userLoginId = JSON.parse(localStorage.getItem("token")).id;
+
+  // Swal
+  const Toast = Swal.mixin({
+    toast: true,
+    position: "top-end",
+    showConfirmButton: false,
+    timer: 3000,
+    timerProgressBar: true,
+    didOpen: (toast) => {
+      toast.addEventListener("mouseenter", Swal.stopTimer);
+      toast.addEventListener("mouseleave", Swal.resumeTimer);
+    },
+  });
 
   // GraphQL
   const {
@@ -58,6 +72,18 @@ const Main = () => {
   const [deleteUser, { loading: loadingDeleteUser, error: errorDeleteUser }] =
     useMutation(DELETE_USER, {
       refetchQueries: [GET_ALL_USER_LIMIT],
+      onCompleted: () => {
+        Toast.fire({
+          icon: "success",
+          title: "Delete successfully",
+        });
+      },
+      onError: () => {
+        Toast.fire({
+          icon: "error",
+          title: "Delete Error",
+        });
+      },
     });
 
   // Function
@@ -104,6 +130,7 @@ const Main = () => {
         column={column}
         dataTable={dataTable}
         deleteData={deleteData}
+        errorDelete={errorDeleteUser}
       />
     </div>
   );

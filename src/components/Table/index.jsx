@@ -9,25 +9,12 @@ import Swal from "sweetalert2";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 
-const Table = ({ column, dataTable, deleteData, link }) => {
+const Table = ({ column, dataTable, deleteData, link, errorDelete }) => {
   // States & Variables
   const [isAdmin] = useState(
     JSON.parse(localStorage.getItem("token")).tipe === "admin"
   );
   const navigate = useNavigate();
-
-  // Swal
-  const Toast = Swal.mixin({
-    toast: true,
-    position: "top-end",
-    showConfirmButton: false,
-    timer: 3000,
-    timerProgressBar: true,
-    didOpen: (toast) => {
-      toast.addEventListener("mouseenter", Swal.stopTimer);
-      toast.addEventListener("mouseleave", Swal.resumeTimer);
-    },
-  });
 
   // Function
   const handleDelete = (id) => {
@@ -46,10 +33,6 @@ const Table = ({ column, dataTable, deleteData, link }) => {
     }).then((result) => {
       if (result.isConfirmed) {
         deleteData(id);
-        Toast.fire({
-          icon: "success",
-          title: "Delete successfully",
-        });
       }
     });
   };

@@ -5,6 +5,9 @@ import { CardDashboard, ContentTitle, Chart } from "components";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 
+// Assets
+import { icon } from "assets/icon";
+
 // GraphQL
 import { useSubscription } from "@apollo/client";
 import { GET_ALL_PRODUK } from "graphql/Produk/queries";
@@ -54,24 +57,31 @@ const Main = () => {
 
       <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-4 gap-2 p-5">
         {dataAllProduk && (
-          <CardDashboard count={dataAllProduk?.produk.length} title="Product" />
+          <CardDashboard
+            count={dataAllProduk?.produk.length}
+            title="Product"
+            icon={icon.fibox}
+          />
         )}
         {dataAllCustomer && (
           <CardDashboard
             count={dataAllCustomer?.customer.length}
             title="Customer"
+            icon={icon.fiusers}
           />
         )}
         {dataAllSupplier && (
           <CardDashboard
             count={dataAllSupplier?.supplier.length}
             title="Supplier"
+            icon={icon.fitruck}
           />
         )}
         {dataAllKategori && (
           <CardDashboard
             count={dataAllKategori?.kategori.length}
             title="Category"
+            icon={icon.filayer}
           />
         )}
         {!dataAllProduk && <Skeleton className="py-7 px-8" />}

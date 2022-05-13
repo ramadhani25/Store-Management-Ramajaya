@@ -11,6 +11,9 @@ import {
   GET_PRODUK_BY_SEARCH,
 } from "graphql/Produk/queries";
 
+// Library
+import Swal from "sweetalert2";
+
 const Main = () => {
   // States & Variables
   const title = {
@@ -25,6 +28,19 @@ const Main = () => {
     { heading: "Category", value: "kategori" },
     { heading: "Supplier", value: "supplier" },
   ];
+
+  // Swal
+  const Toast = Swal.mixin({
+    toast: true,
+    position: "top-end",
+    showConfirmButton: false,
+    timer: 3000,
+    timerProgressBar: true,
+    didOpen: (toast) => {
+      toast.addEventListener("mouseenter", Swal.stopTimer);
+      toast.addEventListener("mouseleave", Swal.resumeTimer);
+    },
+  });
 
   // GraphQL
   const {
@@ -55,6 +71,18 @@ const Main = () => {
     { loading: loadingDeleteProduk, error: errorDeleteProduk },
   ] = useMutation(DELETE_PRODUK, {
     refetchQueries: [GET_ALL_PRODUK_LIMIT],
+    onCompleted: () => {
+      Toast.fire({
+        icon: "success",
+        title: "Delete successfully",
+      });
+    },
+    onError: () => {
+      Toast.fire({
+        icon: "error",
+        title: "Delete Error",
+      });
+    },
   });
 
   // Function

@@ -11,6 +11,9 @@ import {
   GET_SUPPLIER_BY_SEARCH,
 } from "graphql/Supplier/queries";
 
+// Library
+import Swal from "sweetalert2";
+
 const Main = () => {
   // States & Variables
   const title = {
@@ -20,6 +23,19 @@ const Main = () => {
   const [dataLimit, setdataLimit] = useState(10);
   const [dataTable, setDataTable] = useState();
   const column = [{ heading: "Name", value: "nama" }];
+
+  // Swal
+  const Toast = Swal.mixin({
+    toast: true,
+    position: "top-end",
+    showConfirmButton: false,
+    timer: 3000,
+    timerProgressBar: true,
+    didOpen: (toast) => {
+      toast.addEventListener("mouseenter", Swal.stopTimer);
+      toast.addEventListener("mouseleave", Swal.resumeTimer);
+    },
+  });
 
   // GraphQL
   const {
@@ -51,6 +67,18 @@ const Main = () => {
     { loading: loadingDeleteSupplier, error: errorDeleteSupplier },
   ] = useMutation(DELETE_SUPPLIER, {
     refetchQueries: [GET_ALL_SUPPLIER_LIMIT],
+    onCompleted: () => {
+      Toast.fire({
+        icon: "success",
+        title: "Delete successfully",
+      });
+    },
+    onError: () => {
+      Toast.fire({
+        icon: "error",
+        title: "Delete Error",
+      });
+    },
   });
 
   // Function

@@ -101,7 +101,7 @@ const Sidebar = () => {
                   <NavLink
                     key={itemIdx}
                     to={item.path}
-                    className="px-6 py-3 bg-primary text-sm tracking-wide flex items-center  hover:bg-secondary"
+                    className="px-6 py-3 text-sm tracking-wide flex items-center hover:bg-secondary"
                   >
                     <span className="mr-2">{item.icon}</span> {item.name}
                   </NavLink>
