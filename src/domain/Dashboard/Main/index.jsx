@@ -71,7 +71,7 @@ const Main = () => {
         {dataAllKategori && (
           <CardDashboard
             count={dataAllKategori?.kategori.length}
-            title="Kategori"
+            title="Category"
           />
         )}
         {!dataAllProduk && <Skeleton className="py-7 px-8" />}

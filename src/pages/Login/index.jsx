@@ -14,7 +14,6 @@ import { GET_LOGIN_USER } from "graphql/User/queries";
 const Login = () => {
   // State & Variables
   const navigate = useNavigate();
-  const [isLoginError, setIsLoginError] = useState(false);
   const [inputs, setInputs] = useState([
     {
       label: "Username",
@@ -49,13 +48,11 @@ const Login = () => {
     {
       onCompleted: (data) => {
         if (data.user.length === 0) {
-          setIsLoginError(true);
           Toast.fire({
             icon: "error",
             title: "Signed in Error",
           });
         } else {
-          setIsLoginError(false);
           localStorage.setItem("token", JSON.stringify(data.user[0]));
           Toast.fire({
             icon: "success",

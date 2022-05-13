@@ -83,9 +83,18 @@ const Table = ({ column, dataTable, deleteData, link }) => {
                   <td className="py-3 text-xs md:text-sm">{itemIdx + 1}</td>
                   {column.map((colItem, colItemIdx) =>
                     colItem.value !== "kategori" &&
-                    colItem.value !== "supplier" ? (
+                    colItem.value !== "supplier" &&
+                    colItem.value !== "harga" ? (
                       <td key={colItemIdx} className="py-3 text-xs md:text-sm">
                         {item[colItem.value]}
+                      </td>
+                    ) : colItem.value !== "kategori" &&
+                      colItem.value !== "supplier" ? (
+                      <td key={colItemIdx} className="py-3 text-xs md:text-sm">
+                        {item[colItem.value].toLocaleString("id-ID", {
+                          style: "currency",
+                          currency: "IDR",
+                        })}
                       </td>
                     ) : (
                       <td key={colItemIdx} className="py-3 text-xs md:text-sm">
