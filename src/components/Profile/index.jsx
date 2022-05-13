@@ -1,13 +1,22 @@
-import { useQuery } from "@apollo/client";
-import { GET_USER_BY_ID } from "graphql/User/queries";
 import React, { useState } from "react";
 
-const Profile = ({ toggleProfile }) => {
+// Redux
+import { useSelector } from "react-redux";
+
+// GraphQL
+import { useQuery } from "@apollo/client";
+import { GET_USER_BY_ID } from "graphql/User/queries";
+
+const Profile = () => {
+  // States & Variables
   const id = JSON.parse(localStorage.getItem("token")).id;
   const nameUser = JSON.parse(localStorage.getItem("token")).nama;
   const typeUser = JSON.parse(localStorage.getItem("token")).tipe;
   const [file, setFile] = useState("");
+  // Redux
+  const { toggleProfile } = useSelector((state) => state.toggleButton);
 
+  // GraphQL
   const {
     data: dataUserById,
     loading: loadingUserById,

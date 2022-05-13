@@ -1,5 +1,7 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useNavigate } from "react-router-dom";
+
+// Library
 import Dropzone from "react-dropzone";
 import Swal from "sweetalert2";
 
@@ -14,7 +16,10 @@ const Form = ({
   file,
   setFile,
 }) => {
+  // States & Variables
   const navigate = useNavigate();
+
+  // Swal
   const Toast = Swal.mixin({
     toast: true,
     position: "top-end",

@@ -1,8 +1,11 @@
 import React from "react";
+
+// Library
 import { Line } from "react-chartjs-2";
 import { Chart as ChartJS } from "chart.js/auto";
 
 const Chart = ({ dataCustomer }) => {
+  // ChartJS
   const options = {
     responsive: true,
     plugins: {
@@ -12,6 +15,7 @@ const Chart = ({ dataCustomer }) => {
       },
     },
   };
+
   const data = {
     labels: [
       "Jan",

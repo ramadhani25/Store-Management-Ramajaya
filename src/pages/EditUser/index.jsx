@@ -1,31 +1,18 @@
 import { Navbar, Sidebar, Profile, Breadcrumb } from "components";
 import { Main } from "domain/EditUser";
 
-const EditUser = ({
-  toggleProfile,
-  toggleSidebar,
-  setToggleProfile,
-  setToggleSidebar,
-}) => {
+const EditUser = () => {
   const dataPath = [
     { path: "/", title: "Home /" },
     { path: "/user", title: "User" },
   ];
   return (
     <div>
-      <Navbar
-        toggleSidebar={toggleSidebar}
-        setToggleSidebar={setToggleSidebar}
-        toggleProfile={toggleProfile}
-        setToggleProfile={setToggleProfile}
-      />
+      <Navbar />
       <div className="md:flex">
-        <Sidebar
-          toggleSidebar={toggleSidebar}
-          setToggleSidebar={setToggleSidebar}
-        />
+        <Sidebar />
         <div className="main-content">
-          <Profile toggleProfile={toggleProfile} />
+          <Profile />
           <Breadcrumb dataPath={dataPath} />
           <Main />
         </div>

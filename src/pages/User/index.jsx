@@ -1,12 +1,7 @@
 import { Navbar, Sidebar, Profile, Breadcrumb } from "components";
 import { Main } from "domain/User";
 
-const User = ({
-  toggleProfile,
-  toggleSidebar,
-  setToggleProfile,
-  setToggleSidebar,
-}) => {
+const User = () => {
   const dataPath = [
     { path: "/", title: "Home /" },
     { path: "/user", title: "User" },
@@ -14,19 +9,11 @@ const User = ({
 
   return (
     <div>
-      <Navbar
-        toggleSidebar={toggleSidebar}
-        setToggleSidebar={setToggleSidebar}
-        toggleProfile={toggleProfile}
-        setToggleProfile={setToggleProfile}
-      />
+      <Navbar />
       <div className="md:flex">
-        <Sidebar
-          toggleSidebar={toggleSidebar}
-          setToggleSidebar={setToggleSidebar}
-        />
+        <Sidebar />
         <div className="main-content">
-          <Profile toggleProfile={toggleProfile} />
+          <Profile />
           <Breadcrumb dataPath={dataPath} />
           <Main />
         </div>

@@ -30,190 +30,28 @@ import {
 import "./assets/custom.css";
 
 const App = () => {
-  // States
-  const [toggleSidebar, setToggleSidebar] = useState(false);
-  const [toggleProfile, setToggleProfile] = useState(false);
-
   return (
     <Routes>
       <Route path="login" element={<Login />} />
       <Route element={<PrivateRoute />}>
-        <Route
-          path="/"
-          element={
-            <Dashboard
-              toggleSidebar={toggleSidebar}
-              setToggleSidebar={setToggleSidebar}
-              toggleProfile={toggleProfile}
-              setToggleProfile={setToggleProfile}
-            />
-          }
-        />
-        <Route
-          path="user"
-          element={
-            <User
-              toggleSidebar={toggleSidebar}
-              setToggleSidebar={setToggleSidebar}
-              toggleProfile={toggleProfile}
-              setToggleProfile={setToggleProfile}
-            />
-          }
-        />
-        <Route
-          path="user/addUser"
-          element={
-            <AddUser
-              toggleSidebar={toggleSidebar}
-              setToggleSidebar={setToggleSidebar}
-              toggleProfile={toggleProfile}
-              setToggleProfile={setToggleProfile}
-            />
-          }
-        />
-        <Route
-          path="user/EditUser/:id"
-          element={
-            <EditUser
-              toggleSidebar={toggleSidebar}
-              setToggleSidebar={setToggleSidebar}
-              toggleProfile={toggleProfile}
-              setToggleProfile={setToggleProfile}
-            />
-          }
-        />
-        <Route
-          path="product"
-          element={
-            <Product
-              toggleSidebar={toggleSidebar}
-              setToggleSidebar={setToggleSidebar}
-              toggleProfile={toggleProfile}
-              setToggleProfile={setToggleProfile}
-            />
-          }
-        />
-        <Route
-          path="product/addProduct"
-          element={
-            <AddProduct
-              toggleSidebar={toggleSidebar}
-              setToggleSidebar={setToggleSidebar}
-              toggleProfile={toggleProfile}
-              setToggleProfile={setToggleProfile}
-            />
-          }
-        />
-        <Route
-          path="product/EditProduct/:id"
-          element={
-            <EditProduct
-              toggleSidebar={toggleSidebar}
-              setToggleSidebar={setToggleSidebar}
-              toggleProfile={toggleProfile}
-              setToggleProfile={setToggleProfile}
-            />
-          }
-        />
-        <Route
-          path="supplier"
-          element={
-            <Supplier
-              toggleSidebar={toggleSidebar}
-              setToggleSidebar={setToggleSidebar}
-              toggleProfile={toggleProfile}
-              setToggleProfile={setToggleProfile}
-            />
-          }
-        />
-        <Route
-          path="supplier/addSupplier"
-          element={
-            <AddSupplier
-              toggleSidebar={toggleSidebar}
-              setToggleSidebar={setToggleSidebar}
-              toggleProfile={toggleProfile}
-              setToggleProfile={setToggleProfile}
-            />
-          }
-        />
-        <Route
-          path="supplier/EditSupplier/:id"
-          element={
-            <EditSupplier
-              toggleSidebar={toggleSidebar}
-              setToggleSidebar={setToggleSidebar}
-              toggleProfile={toggleProfile}
-              setToggleProfile={setToggleProfile}
-            />
-          }
-        />
-        <Route
-          path="category"
-          element={
-            <Category
-              toggleSidebar={toggleSidebar}
-              setToggleSidebar={setToggleSidebar}
-              toggleProfile={toggleProfile}
-              setToggleProfile={setToggleProfile}
-            />
-          }
-        />
-        <Route
-          path="category/addCategory"
-          element={
-            <AddCategory
-              toggleSidebar={toggleSidebar}
-              setToggleSidebar={setToggleSidebar}
-              toggleProfile={toggleProfile}
-              setToggleProfile={setToggleProfile}
-            />
-          }
-        />
-        <Route
-          path="category/EditCategory/:id"
-          element={
-            <EditCategory
-              toggleSidebar={toggleSidebar}
-              setToggleSidebar={setToggleSidebar}
-              toggleProfile={toggleProfile}
-              setToggleProfile={setToggleProfile}
-            />
-          }
-        />
-        <Route
-          path="customer"
-          element={
-            <Customer
-              toggleSidebar={toggleSidebar}
-              setToggleSidebar={setToggleSidebar}
-              toggleProfile={toggleProfile}
-              setToggleProfile={setToggleProfile}
-            />
-          }
-        />
-        <Route
-          path="customer/addCustomer"
-          element={
-            <AddCustomer
-              toggleSidebar={toggleSidebar}
-              setToggleSidebar={setToggleSidebar}
-              toggleProfile={toggleProfile}
-              setToggleProfile={setToggleProfile}
-            />
-          }
-        />
-        <Route
-          path="customer/EditCustomer/:id"
-          element={
-            <EditCustomer
-              toggleSidebar={toggleSidebar}
-              setToggleSidebar={setToggleSidebar}
-              toggleProfile={toggleProfile}
-              setToggleProfile={setToggleProfile}
-            />
-          }
-        />
+        <Route path="/" element={<Dashboard />} />
+        <Route path="user" element={<User />} />
+        <Route path="product" element={<Product />} />
+        <Route path="supplier" element={<Supplier />} />
+        <Route path="category" element={<Category />} />
+        <Route path="customer" element={<Customer />} />
+
+        <Route path="user/addUser" element={<AddUser />} />
+        <Route path="product/addProduct" element={<AddProduct />} />
+        <Route path="supplier/addSupplier" element={<AddSupplier />} />
+        <Route path="category/addCategory" element={<AddCategory />} />
+        <Route path="customer/addCustomer" element={<AddCustomer />} />
+
+        <Route path="user/EditUser/:id" element={<EditUser />} />
+        <Route path="product/EditProduct/:id" element={<EditProduct />} />
+        <Route path="supplier/EditSupplier/:id" element={<EditSupplier />} />
+        <Route path="category/EditCategory/:id" element={<EditCategory />} />
+        <Route path="customer/EditCustomer/:id" element={<EditCustomer />} />
       </Route>
       <Route path="*" element={<NotFound />} />
     </Routes>

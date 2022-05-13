@@ -1,6 +1,10 @@
 import React, { useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 
+// Redux
+import { useDispatch, useSelector } from "react-redux";
+import { handleSidebar } from "redux/ToggleButton";
+
 // Library
 import Swal from "sweetalert2";
 import "animate.css";
@@ -11,9 +15,17 @@ import { menuItem, menuItemAdmin } from "constants/menuItem";
 // Assets
 import { icon } from "assets/icon";
 
-const Sidebar = ({ toggleSidebar, setToggleSidebar }) => {
+const Sidebar = () => {
+  // States & Variables
+  const [isAdmin] = useState(
+    JSON.parse(localStorage.getItem("token")).tipe === "admin"
+  );
   const navigate = useNavigate();
+  // Redux
+  const { toggleSidebar } = useSelector((state) => state.toggleButton);
+  const dispatch = useDispatch();
 
+  // Swal
   const Toast = Swal.mixin({
     toast: true,
     position: "top-end",
@@ -26,10 +38,7 @@ const Sidebar = ({ toggleSidebar, setToggleSidebar }) => {
     },
   });
 
-  const [isAdmin] = useState(
-    JSON.parse(localStorage.getItem("token")).tipe === "admin"
-  );
-
+  // Function
   const handleLogout = () => {
     Swal.fire({
       title: "Sign Out",
@@ -58,7 +67,7 @@ const Sidebar = ({ toggleSidebar, setToggleSidebar }) => {
   return (
     <div className="bg-primary">
       <div
-        onClick={() => setToggleSidebar(!toggleSidebar)}
+        onClick={() => dispatch(handleSidebar())}
         className={`w-screen h-screen bg-secondary/20 fixed top-0 left-0 z-40 md:hidden ${
           toggleSidebar ? "fixed" : "hidden"
         }`}
@@ -78,7 +87,7 @@ const Sidebar = ({ toggleSidebar, setToggleSidebar }) => {
               <div>RAMAJAYA</div>
               <button
                 className="px-1 bg-accent text-primary rounded-md md:hidden"
-                onClick={() => setToggleSidebar(!toggleSidebar)}
+                onClick={() => dispatch(handleSidebar())}
               >
                 {icon.fix}
               </button>

@@ -3,16 +3,20 @@ import { useNavigate } from "react-router-dom";
 
 // Assets
 import { icon } from "assets/icon";
+
+// Library
 import Swal from "sweetalert2";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 
 const Table = ({ column, dataTable, deleteData, link }) => {
-  const navigate = useNavigate();
+  // States & Variables
   const [isAdmin] = useState(
     JSON.parse(localStorage.getItem("token")).tipe === "admin"
   );
+  const navigate = useNavigate();
 
+  // Swal
   const Toast = Swal.mixin({
     toast: true,
     position: "top-end",
@@ -25,6 +29,7 @@ const Table = ({ column, dataTable, deleteData, link }) => {
     },
   });
 
+  // Function
   const handleDelete = (id) => {
     Swal.fire({
       title: "Are you sure?",

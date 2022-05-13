@@ -1,31 +1,18 @@
 import { Navbar, Sidebar, Profile, Breadcrumb } from "components";
 import { Main } from "domain/Customer";
 
-const Customer = ({
-  toggleProfile,
-  toggleSidebar,
-  setToggleProfile,
-  setToggleSidebar,
-}) => {
+const Customer = () => {
   const dataPath = [
     { path: "/", title: "Home /" },
     { path: "/customer", title: "Customer" },
   ];
   return (
     <div>
-      <Navbar
-        toggleSidebar={toggleSidebar}
-        setToggleSidebar={setToggleSidebar}
-        toggleProfile={toggleProfile}
-        setToggleProfile={setToggleProfile}
-      />
+      <Navbar />
       <div className="md:flex">
-        <Sidebar
-          toggleSidebar={toggleSidebar}
-          setToggleSidebar={setToggleSidebar}
-        />
+        <Sidebar />
         <div className="main-content">
-          <Profile toggleProfile={toggleProfile} />
+          <Profile />
           <Breadcrumb dataPath={dataPath} />
           <Main />
         </div>
