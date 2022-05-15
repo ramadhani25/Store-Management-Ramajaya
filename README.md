@@ -1,7 +1,7 @@
-<center>
-
 # Ramajaya - Management Store
 
-Ramajaya - store management is a store management app built using react
+Ramajaya - store management is a store management app built using react.
 
-</center>
+## Web
+
+[ramajaya-store-management](https://ramajaya-store-management.vercel.app)
