@@ -11,7 +11,7 @@ const Main = () => {
   // States & Variables
   const title = {
     textTitle: "Category",
-    desc: "Fill in the form to add Customer",
+    desc: "Fill in the form to add Category",
   };
   const [inputs, setInputs] = useState([
     {

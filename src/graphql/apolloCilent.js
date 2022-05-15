@@ -8,8 +8,7 @@ import { createClient } from "graphql-ws";
 const httpLink = new HttpLink({
   uri: "https://adapted-redfish-37.hasura.app/v1/graphql",
   headers: {
-    "x-hasura-admin-secret":
-      "VQ3a4FSKYaY2CoteC9XCyhbAIaSuWRx7LbtgNuzNA1DY2uo2dDhvx6bV9UbrvFpV",
+    "x-hasura-admin-secret": process.env.REACT_APP_HASURA_ADMIN_SECRET,
   },
 });
 
@@ -18,8 +17,7 @@ const wsLink = new GraphQLWsLink(
     url: "wss://adapted-redfish-37.hasura.app/v1/graphql",
     connectionParams: {
       headers: {
-        "x-hasura-admin-secret":
-          "VQ3a4FSKYaY2CoteC9XCyhbAIaSuWRx7LbtgNuzNA1DY2uo2dDhvx6bV9UbrvFpV",
+        "x-hasura-admin-secret": process.env.REACT_APP_HASURA_ADMIN_SECRET,
       },
     },
   })
