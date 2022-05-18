@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 // Library
@@ -17,6 +17,7 @@ const Form = ({
   setFile,
 }) => {
   // States & Variables
+  const [errors, setErrors] = useState("");
   const navigate = useNavigate();
 
   // Swal
@@ -117,7 +118,26 @@ const Form = ({
         ))}
 
       {inputDropzone && (
-        <Dropzone onDrop={(acceptedFiles) => getBase64(acceptedFiles[0])}>
+        <Dropzone
+          onDropAccepted={(acceptedFiles) => {
+            getBase64(acceptedFiles[0]);
+            setErrors("");
+          }}
+          onDropRejected={(fileRejections) => {
+            fileRejections.forEach((file) => {
+              file.errors.forEach((err) => {
+                if (err.code === "file-too-large") {
+                  setErrors("Error: Max file 5MB.");
+                }
+
+                if (err.code === "file-invalid-type") {
+                  setErrors("Error: Invalid type.");
+                }
+              });
+            });
+          }}
+          maxSize={5242880}
+        >
           {({ getRootProps, getInputProps }) => (
             <div className="py-2 w-full">
               <label className="text-gray-500">Image</label>
@@ -126,7 +146,9 @@ const Form = ({
                 {...getRootProps()}
               >
                 <input {...getInputProps()} />
-                <p>Drop files here</p>
+                <p className={`${errors ? "text-red-500" : "text-gray-500"}`}>
+                  {errors ? `${errors}` : "Drop files here"}
+                </p>
               </div>
             </div>
           )}
