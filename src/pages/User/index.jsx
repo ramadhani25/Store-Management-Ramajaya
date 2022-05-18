@@ -1,11 +1,22 @@
 import { Navbar, Sidebar, Profile, Breadcrumb } from "components";
 import { Main } from "domain/User";
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 const User = () => {
   const dataPath = [
     { path: "/", title: "Home /" },
     { path: "/user", title: "User" },
   ];
+
+  const auth = JSON.parse(localStorage.getItem("token"));
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (auth.tipe !== "admin") {
+      navigate("/");
+    }
+  });
 
   return (
     <div>
