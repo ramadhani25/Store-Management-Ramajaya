@@ -20,7 +20,7 @@ const TableController = ({ btnName, setdataLimit, doSearch }) => {
   };
 
   return (
-    <div className="flex justify-between items-center p-5 text-xs md:text-sm">
+    <div className="flex justify-between items-center p-5 text-[8px] sm:text-xs md:text-sm">
       <form
         className={`flex items-center justify-between ${
           isAdmin ? "" : "w-full"
@@ -58,7 +58,7 @@ const TableController = ({ btnName, setdataLimit, doSearch }) => {
       </form>
       <button
         onClick={() => navigate(`add${btnName}`)}
-        className={`bg-accent font-semibold items-center py-1 px-3 rounded-lg text-xs md:text-xs ${
+        className={`bg-accent font-semibold items-center py-1 px-3 rounded-lg text-[8px] sm:text-xs md:text-md ${
           isAdmin ? "flex" : "hidden"
         }`}
       >

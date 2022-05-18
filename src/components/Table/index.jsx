@@ -49,14 +49,17 @@ const Table = ({ column, dataTable, deleteData, link, errorDelete }) => {
         <table className="table-auto w-full text-center">
           <thead>
             <tr className="bg-accent">
-              <th className="py-2 text-xs md:text-sm">No</th>
+              <th className="py-2 text-[8px] sm:text-xs md:text-sm">No</th>
               {column.map((item, itemIdx) => (
-                <th key={itemIdx} className="py-2 text-xs md:text-sm">
+                <th
+                  key={itemIdx}
+                  className="py-2 text-[8px] sm:text-xs md:text-sm"
+                >
                   {item.heading}
                 </th>
               ))}
               <th
-                className={`py-2 text-xs md:text-sm ${
+                className={`py-2 text-[8px] sm:text-xs md:text-sm ${
                   isAdmin ? "block" : "hidden"
                 }`}
               >
@@ -68,30 +71,41 @@ const Table = ({ column, dataTable, deleteData, link, errorDelete }) => {
             {dataTable &&
               dataTable.map((item, itemIdx) => (
                 <tr key={itemIdx}>
-                  <td className="py-3 text-xs md:text-sm">{itemIdx + 1}</td>
+                  <td className="py-3 text-[8px] sm:text-xs md:text-sm">
+                    {itemIdx + 1}
+                  </td>
                   {column.map((colItem, colItemIdx) =>
                     colItem.value !== "kategori" &&
                     colItem.value !== "supplier" &&
                     colItem.value !== "harga" ? (
-                      <td key={colItemIdx} className="py-3 text-xs md:text-sm">
+                      <td
+                        key={colItemIdx}
+                        className="py-3 text-[8px] sm:text-xs md:text-sm"
+                      >
                         {item[colItem.value]}
                       </td>
                     ) : colItem.value !== "kategori" &&
                       colItem.value !== "supplier" ? (
-                      <td key={colItemIdx} className="py-3 text-xs md:text-sm">
+                      <td
+                        key={colItemIdx}
+                        className="py-3 text-[8px] sm:text-xs md:text-sm"
+                      >
                         {item[colItem.value].toLocaleString("id-ID", {
                           style: "currency",
                           currency: "IDR",
                         })}
                       </td>
                     ) : (
-                      <td key={colItemIdx} className="py-3 text-xs md:text-sm">
+                      <td
+                        key={colItemIdx}
+                        className="py-3 text-[8px] sm:text-xs md:text-sm"
+                      >
                         {item[colItem.value]["nama"]}
                       </td>
                     )
                   )}
                   <td
-                    className={`justify-center py-3 text-xs md:text-sm ${
+                    className={`justify-center py-3 text-[8px] sm:text-xs md:text-sm ${
                       isAdmin ? "flex" : "hidden"
                     }`}
                   >
