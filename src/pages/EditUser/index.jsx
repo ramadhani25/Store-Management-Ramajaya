@@ -1,11 +1,23 @@
 import { Navbar, Sidebar, Profile, Breadcrumb } from "components";
 import { Main } from "domain/EditUser";
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 const EditUser = () => {
   const dataPath = [
     { path: "/", title: "Home /" },
     { path: "/user", title: "User" },
   ];
+
+  const auth = JSON.parse(localStorage.getItem("token"));
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (auth.tipe !== "admin") {
+      navigate("/");
+    }
+  });
+
   return (
     <div>
       <Navbar />
